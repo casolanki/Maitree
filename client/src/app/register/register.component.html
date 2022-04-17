@@ -1,0 +1,36 @@
+<form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <h2 class="text-center text-primary">Sign up</h2>
+    <hr>
+    <div class="control-label" stayle="margin-right:10px;">
+        <label class="control-label"></label>
+        <label class="radio-inline">
+            <input type="radio" value='male' formControlName='gender'> Male
+        </label>
+        <label class="radio-inline">
+            <input class="ml-3" type="radio" value='female' formControlName='gender'> Female
+        </label>
+    </div>
+    <text-input [formControl]='registerForm.controls["username"]' [label]='"Username"'></text-input>
+    <text-input [formControl]='registerForm.controls["knownAs"]' [label]='"knownAs"'></text-input>
+    <date-input [formControl]='registerForm.controls["dateOfBirth"]' [maxDate]='maxDate' [label]='"dateOfBirth"'></date-input>
+    <text-input [formControl]='registerForm.controls["city"]' [label]='"city"'></text-input>
+    <text-input [formControl]='registerForm.controls["country"]' [label]='"country"'></text-input>
+    <text-input [formControl]='registerForm.controls["password"]' [label]='"Password"' [type]='"Password"'></text-input>
+    <text-input [formControl]='registerForm.controls["confirmPassword"]' [label]='"Confirm Password"' [type]='"Password"'>
+    </text-input>
+
+    <div class="row" *ngIf="validationErrors.length > 0">
+        <ur class="text-danger">
+            <li *ngFor="let error of validationErrors"> 
+                {{error}}
+            </li>
+        </ur>
+    </div>
+
+    <div class="form-group text-center">
+        <button [disabled]="registerForm.invalid" class="btn btn-success mr-2" type="submit">Register</button>
+        <button class="btn btn-default mr-2" (click)="cancel()" type="submit">Cancel</button>
+    </div>
+</form>
+<!-- <p>Form Value: {{this.registerForm.value | json }} </p>
+<p>Form Status: {{this.registerForm.status | json }} </p> -->

@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-info">
+    <div class="container">
+        <a class="navbar-brand" routerLinkActive='active' routerLink='/'>Maitri.Com</a>
+
+        <!-- Commented Responsive Code -->
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button> -->
+        <!-- <div class="collapse navbar-collapse" id="navbarCollapse"> -->            
+        <ul class="navbar-nav mr-auto">
+            <ng-container *ngIf="accountService.currentUser$ | async">
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive='active' routerLink='/members'>Matches </a>                
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive='active' routerLink='/lists'>Lists</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive='active' routerLink='/messages'>Messages</a>                
+                </li>
+                <li class="nav-item"  *HasRole='["Admin","Moderator"]'>
+                    <a class="nav-link" routerLinkActive='active' routerLink='/admin'>Admin</a>                
+                </li>          
+            </ng-container>  
+            <li class="nav-item">
+                <a class="nav-link" routerLinkActive='active' routerLink='/erros'>Errors</a>                
+            </li>            
+        </ul>
+        <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+            <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+            <a  class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}}</a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+                <a routerLink="/member/edit" class="dropdown-item">Edit Profile</a>
+                <div  class="dropdown-divider"></div>
+                <a  class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+        </div>
+
+        <form *ngIf="(accountService.currentUser$ | async) === null"  #loginForm="ngForm" class="form-inline mt-2 mt-md-0" (ngSubmit)="login()" autocomplete="off">
+            <input
+             name="username"
+             [(ngModel)]="model.username"
+             class="form-control mr-sm-2" type="text" placeholder="Username">
+            <input 
+            name="passowrd"            
+            [(ngModel)]="model.password"
+            class="form-control mr-sm-2" type="password" placeholder="Password">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Login</button>
+        </form>
+        <!-- </div> -->
+    </div>
+</nav>

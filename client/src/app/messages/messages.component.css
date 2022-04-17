@@ -1,0 +1,9 @@
+.img-circle{
+    max-height: 50px;
+}
+
+/* .btn-messages ::ng-deep .btn-primary:not(:disabled):not(.disabled).active, 
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+    background-color: none !important;
+    border-color: none !important
+} */
