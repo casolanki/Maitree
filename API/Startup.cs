@@ -66,8 +66,8 @@ namespace API
             app.UseCors(policy => policy
             .AllowAnyHeader()
             .AllowCredentials() // For SigleR Chat
-            .AllowAnyMethod());
-            //.WithOrigins("https://localhost:4200"));
+            .AllowAnyMethod()
+            .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
             app.UseAuthorization();
