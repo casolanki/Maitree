@@ -1,20 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using API.Data;
-using API.DTOs;
-using API.Entities;
-using API.Interface;
-using AutoMapper;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
+
     public class AccountController : BaseApiController
     {
         private readonly DataContext _context;
@@ -23,11 +10,11 @@ namespace API.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public AccountController(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,DataContext context, 
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DataContext context,
             ITokenService tokenService, IMapper maper)
         {
             _signInManager = signInManager;
-            _userManager = userManager;            
+            _userManager = userManager;
             _tokenService = tokenService;
             _mapper = maper;
         }
@@ -43,9 +30,9 @@ namespace API.Controllers
             if (user == null) return Unauthorized("Invalid username");
 
             var result = await _signInManager
-                            .CheckPasswordSignInAsync(user,loginDto.Password,false);
-            
-            if(!result.Succeeded) return Unauthorized();
+                            .CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+            if (!result.Succeeded) return Unauthorized();
 
             return new UserDto
             {
@@ -65,14 +52,14 @@ namespace API.Controllers
 
             var user = _mapper.Map<AppUser>(registerDto);
             user.UserName = registerDto.Username.ToLower();
-            
-            var result = await _userManager.CreateAsync(user,registerDto.Password);
 
-            if(!result.Succeeded) return BadRequest(result.Errors);
+            var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            var roleResult = await _userManager.AddToRoleAsync(user,"Member");
+            if (!result.Succeeded) return BadRequest(result.Errors);
 
-            if(!roleResult.Succeeded) return BadRequest(result.Errors);
+            var roleResult = await _userManager.AddToRoleAsync(user, "Member");
+
+            if (!roleResult.Succeeded) return BadRequest(result.Errors);
 
             return new UserDto
             {
