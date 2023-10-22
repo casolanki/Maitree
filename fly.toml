@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for maitri on 2023-10-21T19:09:14+08:00
+# fly.toml app configuration file generated for maitri on 2023-10-22T16:22:35+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -10,9 +10,9 @@ primary_region = "sin"
   image = "yuraj91/maitree:latest"
 
 [env]
-  ASPNETCORE_URLS="http://+:8080"
-  CloudinarySettings__CloudName="solanki"
-  CloudinarySettings__ApiKey="459927754356992"
+  ASPNETCORE_URLS = "http://+:8080"
+  CloudinarySettings__ApiKey = "459927754356992"
+  CloudinarySettings__CloudName = "solanki"
 
 [http_service]
   internal_port = 8080
