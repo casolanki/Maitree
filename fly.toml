@@ -7,7 +7,7 @@ app = "maitri"
 primary_region = "sin"
 
 [build]
-  image = "yuraj91/maitree:latest"
+  image = "yuvraj91/maitree:latest"
 
 [env]
   ASPNETCORE_URLS = "http://+:8080"
