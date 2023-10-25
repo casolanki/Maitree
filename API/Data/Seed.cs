@@ -24,9 +24,9 @@ namespace API.Data
         {
             if(await userManager.Users.AnyAsync()) return;
 
-            var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
-            var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
-            if(users == null) return;
+            // var userData = await System.IO.File.ReadAllTextAsync("Data/UserSeedData.json");
+            // var users = JsonSerializer.Deserialize<List<AppUser>>(userData);
+            // if(users == null) return;
 
             var roles = new List<AppRole>
             {
@@ -40,15 +40,15 @@ namespace API.Data
                 await roleManager.CreateAsync(role);
             }
 
-            foreach(var user in users)
-            {
-                user.UserName = user.UserName.ToLower();
-                user.Created = DateTime.SpecifyKind(user.Created, DateTimeKind.Utc);
-                user.LastActive = DateTime.SpecifyKind(user.LastActive, DateTimeKind.Utc);
-                await userManager.CreateAsync(user,"Pass@123");
-                await userManager.AddToRoleAsync(user,"Member");
+            // foreach(var user in users)
+            // {
+            //     user.UserName = user.UserName.ToLower();
+            //     user.Created = DateTime.SpecifyKind(user.Created, DateTimeKind.Utc);
+            //     user.LastActive = DateTime.SpecifyKind(user.LastActive, DateTimeKind.Utc);
+            //     await userManager.CreateAsync(user,"Pass@123");
+            //     await userManager.AddToRoleAsync(user,"Member");
 
-            }
+            // }
 
             var admin = new AppUser
             {
