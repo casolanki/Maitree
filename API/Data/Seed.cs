@@ -40,15 +40,15 @@ namespace API.Data
                 await roleManager.CreateAsync(role);
             }
 
-            foreach(var user in users)
-            {
-                user.UserName = user.UserName.ToLower();
-                user.Created = DateTime.SpecifyKind(user.Created, DateTimeKind.Utc);
-                user.LastActive = DateTime.SpecifyKind(user.LastActive, DateTimeKind.Utc);
-                await userManager.CreateAsync(user,"Pass@123");
-                await userManager.AddToRoleAsync(user,"Member");
+            // foreach(var user in users)
+            // {
+            //     user.UserName = user.UserName.ToLower();
+            //     user.Created = DateTime.SpecifyKind(user.Created, DateTimeKind.Utc);
+            //     user.LastActive = DateTime.SpecifyKind(user.LastActive, DateTimeKind.Utc);
+            //     await userManager.CreateAsync(user,"Pass@123");
+            //     await userManager.AddToRoleAsync(user,"Member");
 
-            }
+            // }
 
             var admin = new AppUser
             {
